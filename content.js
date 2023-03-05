@@ -1,18 +1,38 @@
+const row0 = document.querySelectorAll(".line0");
+const row1 = document.querySelectorAll(".line1");
 
-window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
-});
-
-
-// for (let i = 0; tile2.length-1; i++){
-//     tile2[i].style.display = 'none';
-// }
+const fromDate = '2023-01-23'
 
 
-window.addEventListener("DOMContentLoaded", function () {
-    console.log('gówno')
-    for (let i = 0; document.getElementsByClassName("line0").length-3; i++){
-        document.getElementsByClassName("line0")[i].style.display = "none";
+
+for (let i = 0; i < row0.length; i++){   
+    let date = row0[i].firstElementChild.innerText.slice(0, 10)
+
+    if (parseInt(date.slice(0, 5)) >= parseInt(fromDate.slice(0, 5))){
+        if (parseInt(date.slice(5, 7)) >= parseInt(fromDate.slice(5, 7))){
+            if (parseInt(date.slice(8, 10)) >= parseInt(fromDate.slice(8, 10))){
+                console.log('zostaw')
+            }else{
+                row0[i].style.display = 'none';
+            }
+        } else {
+            row0[i].style.display = 'none';
+        } 
+    } else{
+        row0[i].style.display = 'none';
     }
-});
+}
 
+for (let i = 0; i < row1.length; i++){
+    let date = row1[i].firstElementChild.innerText.slice(0, 10)
+
+    if (parseInt(date.slice(0, 5)) < parseInt(fromDate.slice(0, 5))){
+        console.log('zostaw1')
+    } else if (parseInt(date.slice(5, 7)) < parseInt(fromDate.slice(5, 7))){
+        console.log('zostaw2')
+    }else if (parseInt(date.slice(8, 10)) <= parseInt(fromDate.slice(8, 10))){
+        console.log('zostaw3')
+    }else{
+        row1[i].style.display = 'none';
+    }
+}

@@ -1,14 +1,14 @@
 {
     "name": "Librus-cleaner",
     "description": "your mother will never beat you again",
-    "version": "0.1.2",
+    "version": "1.4",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
     },
     "content_scripts": [
         {
-            "matches": ["https://synergia.librus.pl/*"],
+            "matches": ["https://synergia.librus.pl/przegladaj_nb/*"],
             "js":  ["content.js"]
         }
     ],
