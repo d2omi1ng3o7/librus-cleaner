@@ -1,0 +1,28 @@
+{
+    "name": "Librus-cleaner",
+    "description": "your mother will never beat you again",
+    "version": "0.1.2",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://synergia.librus.pl/*"],
+            "js":  ["content.js"]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "options_page": "options.html",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://synergia.librus.pl/*"
+    ]
+}
