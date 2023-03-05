@@ -1,7 +1,7 @@
 const row0 = document.querySelectorAll(".line0");
 const row1 = document.querySelectorAll(".line1");
 
-const fromDate = '2023-01-23'
+const fromDate = '2023-03-01'
 
 
 
