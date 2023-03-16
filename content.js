@@ -1,85 +1,81 @@
-const row = document.querySelectorAll(".line0", ".line1");
-// const row1 = document.querySelectorAll(".line1");
-const fromDate = '2023-03-01';
+const row0 = document.querySelectorAll(".line0");
+const row1 = document.querySelectorAll(".line1");
 
-console.log(row)
+// date format: year-month-day
+
+const exceptions = [
+    '2023-03-16',
+]
+
+const fromDate = '2023-03-01';  // from when are the absences to be removed
 
 
-// for (let i = 0; i < row1.length; i++){
-//     row.push(row1[i]);
-// }
+const comparisonDate = (date) =>{
+    // if the given date is greater, it is false
+    
+    if (parseInt(date.slice(0, 4)) > parseInt(fromDate.slice(0, 4))){
+        return false;
+    } else if (parseInt(date.slice(0, 4)) == parseInt(fromDate.slice(0, 4))){
 
+        if (parseInt(date.slice(5, 7)) > parseInt(fromDate.slice(5, 7))){
+            return false;
+        } else if (parseInt(date.slice(5, 7)) == parseInt(fromDate.slice(5, 7))){
+    
+            if (parseInt(date.slice(8, 10)) >= parseInt(fromDate.slice(8, 10))){
+                return false;
+            } else {
+                return true;
+            }
+
+        } else {
+            return true;
+        }
+
+    } else {
+        return true;
+    }
+
+}
 
 const generateListDays = () =>{
     let days = [];
     
-    for (let i = 0; i < row.length; i++){ 
-        days.push(row[i].firstElementChild.innerText.slice(0, 10));
+    for (let i = 0; i < row0.length; i++){
+        let date = row0[i].firstElementChild.innerText.slice(0, 10);
+        if (date.length == 10){
+            if (comparisonDate(date)){
+                days.push(date);
+            }
+        }
+    }
+
+    for (let i = 0; i < row1.length; i++){ 
+        let date = row1[i].firstElementChild.innerText.slice(0, 10);
+        if (date.length == 10){
+            if (comparisonDate(date)){
+                days.push(date);
+            }
+        }
+    }
+
+    for (let i=0; i < exceptions.length; i++){
+        days.push(exceptions[i])
     }
 
     return days;
 }
 
-let days = generateListDays();
-let whetherShow = false;
 
-for (let i = 0; i < days.length; i++){
+const days = generateListDays()
 
-    if (whetherShow){
-        row[i].style.display = 'none';
+
+for (let i=0; i < row0.length; i++){
+    if (days.indexOf(row0[i].firstElementChild.innerText.slice(0, 10)) == -1){
+        row0[i].style.display = 'none';
     }
-
-
-    if (days[i] == fromDate){
-        whetherShow = true;
-    }
-
-
-
-    console.log(days[i]);
 }
-
-
-
-
-
-// for (let i = 0; i < row0.length; i++){   
-//     let date = row0[i].firstElementChild.innerText.slice(0, 10)
-
-//     if (parseInt(date.slice(0, 5)) > parseInt(fromDate.slice(0, 5))){
-//         row0[i].style.display = 'none';
-//     } else if (parseInt(date.slice(0, 5)) == parseInt(fromDate.slice(0, 5))){
-//         if (parseInt(date.slice(5, 7)) > parseInt(fromDate.slice(5, 7))){
-//             row0[i].style.display = 'none';
-//         } else if (parseInt(date.slice(8, 10)) >= parseInt(fromDate.slice(8, 10))){
-//             row0[i].style.display = 'none';
-//         }
-//     } 
-// }
-
-// for (let i = 0; i < row1.length; i++){
-//     let date = row1[i].firstElementChild.innerText.slice(0, 10)
-
-//     if (parseInt(date.slice(0, 5)) > parseInt(fromDate.slice(0, 5))){
-//         row1[i].style.display = 'none';
-//     } else if (parseInt(date.slice(0, 5)) == parseInt(fromDate.slice(0, 5))){
-//         if (parseInt(date.slice(5, 7)) > parseInt(fromDate.slice(5, 7))){
-//             row1[i].style.display = 'none';
-//         } else if (parseInt(date.slice(8, 10)) >= parseInt(fromDate.slice(8, 10))){
-//             row1[i].style.display = 'none';
-//         }
-//     } 
-// }
-
-
-// let date = row1[i].firstElementChild.innerText.slice(0, 10)
-
-//     if (parseInt(date.slice(0, 5)) < parseInt(fromDate.slice(0, 5))){
-//         console.log('zostaw1')
-//     } else if (parseInt(date.slice(5, 7)) < parseInt(fromDate.slice(5, 7))){
-//         console.log('zostaw2')
-//     }else if (parseInt(date.slice(8, 10)) <= parseInt(fromDate.slice(8, 10))){
-//         console.log('zostaw3')
-//     }else{
-//         row1[i].style.display = 'none';
-//     }
+for (let i=0; i < row1.length; i++){
+    if (days.indexOf(row1[i].firstElementChild.innerText.slice(0, 10)) == -1){
+        row1[i].style.display = 'none';
+    }
+}
