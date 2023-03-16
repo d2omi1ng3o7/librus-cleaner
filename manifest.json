@@ -1,7 +1,7 @@
 {
     "name": "Librus-cleaner",
     "description": "your mother will never beat you again",
-    "version": "1.5",
+    "version": "2.0",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
